@@ -1,5 +1,5 @@
 class Despesa {
-    constructor(ano, mes, dia,tipo, descricao, valor) {
+    constructor(ano, mes, dia, tipo, descricao, valor) {
         this.ano = ano
         this.mes = mes
         this.dia = dia
@@ -10,8 +10,18 @@ class Despesa {
     }
 }
 
+class Bd {
+    getProximoId(){
+        let proximoId = localStorage.getItem('id')//null
+    }
+    gravar(d) {        
+        //localStorage.setItem('despesa', JSON.stringify(d))
+        this.getProximoId()
 
+    }
+}
 
+let bd = new Bd()
 
 function cadastrarDespesa() {
 
@@ -21,7 +31,7 @@ function cadastrarDespesa() {
     let tipo = document.getElementById('tipo')
     let descricao = document.getElementById('descricao')
     let valor = document.getElementById('valor')
-    
+
 
     let despesa = new Despesa(
 
@@ -33,13 +43,11 @@ function cadastrarDespesa() {
         valor.value
 
 
-        
+
 
     )
-    gravar(despesa)
+    Bd.gravar(despesa)
 
 }
 
-function gravar(d){
-    localStorage.setItem('despesa',JSON.stringify(d))
-}
+
