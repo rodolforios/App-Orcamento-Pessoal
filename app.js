@@ -9,8 +9,8 @@ class Despesa {
 	}
 
 	validarDados() {
-		for(let i in this) {
-			if(this[i] == undefined || this[i] == '' || this[i] == null) {
+		for (let i in this) {
+			if (this[i] == undefined || this[i] == '' || this[i] == null) {
 				return false
 			}
 		}
@@ -23,7 +23,7 @@ class Bd {
 	constructor() {
 		let id = localStorage.getItem('id')
 
-		if(id === null) {
+		if (id === null) {
 			localStorage.setItem('id', 0)
 		}
 	}
@@ -40,6 +40,28 @@ class Bd {
 
 		localStorage.setItem('id', id)
 	}
+	recuperarTodosRegistros() {
+
+		//array de despesas
+		let despesas = Array()
+
+
+		let id = localStorage.getItem('id')
+		//recuperar todas despesas cadastradas em localStorage
+		for (let i = 1; i <= id; i++) {
+			//recuperar a despesa
+			let despesa = JSON.parse(localStorage.getItem(i))
+			// existe a possibilidade de jaber ídices que foram pulados/removidos
+			//nestes casos nós vamos pular esses indices
+
+			if(despesa == null){
+				continue
+			}
+
+			despesas.push(despesa)
+		}
+		return despesas 
+	}
 }
 
 let bd = new Bd()
@@ -55,31 +77,41 @@ function cadastrarDespesa() {
 	let valor = document.getElementById('valor')
 
 	let despesa = new Despesa(
-		ano.value, 
-		mes.value, 
-		dia.value, 
-		tipo.value, 
+		ano.value,
+		mes.value,
+		dia.value,
+		tipo.value,
 		descricao.value,
 		valor.value
 	)
-	
-	if(despesa.validarDados()) {
+
+	if (despesa.validarDados()) {
 		bd.gravar(despesa)
 		document.getElementById('modal_titulo').innerHTML = 'Registro inserido com sucesso'
 		document.getElementById('modal_titulo_div').className = 'modal-header text-success'
 		document.getElementById('modal_conteudo').innerHTML = 'Despesa foi cadastrada com sucesso!'
 		document.getElementById('botao_modal').className = 'btn-success'
-		
 
-		
+
+
 		//dialog de sucesso
-		$('#modalregistroDespesa').modal('show') 
+		$('#modalregistroDespesa').modal('show')
 	} else {
 		//dialog de sucesso
 		document.getElementById('modal_titulo').innerHTML = 'Erro na inclusão do registro'
 		document.getElementById('modal_titulo_div').className = 'modal-header text-danger'
 		document.getElementById('modal_conteudo').innerHTML = 'Preencha todos os campos!'
 		document.getElementById('botao_modal').className = 'btn-danger'
-		$('#modalregistroDespesa').modal('show') 
+		$('#modalregistroDespesa').modal('show')
 	}
+}
+
+function carregaListaDespesa() {
+
+	let despesas = Array()
+
+	despesas = bd.recuperarTodosRegistros()
+
+	console.log(despesas)
+
 }
