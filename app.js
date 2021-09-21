@@ -54,13 +54,13 @@ class Bd {
 			// existe a possibilidade de jaber ídices que foram pulados/removidos
 			//nestes casos nós vamos pular esses indices
 
-			if(despesa == null){
+			if (despesa == null) {
 				continue
 			}
 
 			despesas.push(despesa)
 		}
-		return despesas 
+		return despesas
 	}
 }
 
@@ -111,7 +111,38 @@ function carregaListaDespesa() {
 	let despesas = Array()
 
 	despesas = bd.recuperarTodosRegistros()
+	//selecionando o elemento tbody da tabela
+	let listaDespesas = document.getElementById('listaDespesas')
 
-	console.log(despesas)
+
+	//percorrer o array despesas, listando cada despesa de forma dinâmica
+
+	despesas.forEach(function (d) {
+		//criando a linha (tr)
+		let linha = listaDespesas.insertRow()
+
+		//crair as colundas(td)
+
+		linha.insertCell(0).innerHTML = `${d.dia}/${d.mes}/${d.ano}`
+		
+		//ajustar o tipo
+		switch (d.tipo) {
+			case '1': d.tipo = 'Alimentação'
+				break
+			case '2': d.tipo = 'Educação'
+				break
+			case '3': d.tipo = 'Lazer'
+				break
+			case '4': d.tipo = 'Saúde'
+				break
+			case '5': d.tipo = 'Transporte'
+				break
+
+		}
+		linha.insertCell(1).innerHTML = `${d.tipo}`
+		linha.insertCell(2).innerHTML = `${d.descricao}`
+		linha.insertCell(3).innerHTML = `${d.valor}`
+
+	})
 
 }
