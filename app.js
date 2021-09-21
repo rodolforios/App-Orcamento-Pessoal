@@ -103,8 +103,17 @@ function cadastrarDespesa() {
 		document.getElementById('modal_conteudo').innerHTML = 'Preencha todos os campos!'
 		document.getElementById('botao_modal').className = 'btn-danger'
 		$('#modalregistroDespesa').modal('show')
+		ano.value =''
+		mes.value =''
+		dia.value =''
+		tipo.value =''
+		descricao.value =''
+		valor.value =''
+		
 	}
 }
+
+
 
 function carregaListaDespesa() {
 
