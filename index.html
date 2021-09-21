@@ -1,4 +1,3 @@
-
 <html>
 	<head>
     <meta charset="utf-8" />
@@ -57,9 +56,6 @@
           <select class="form-control" id="ano">
             <option value="">Ano</option>
             <option value="2018">2018</option>
-            <option value="2019">2019</option>
-            <option value="2020">2020</option>
-            <option value="2021">2021</option>
           </select>
         </div>
 
@@ -107,30 +103,26 @@
         </div>
 
         <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary" onclick="cadastrarDespesa() ">
+          <button type="button" class="btn btn-primary" onclick="cadastrarDespesa()">
             <i class="fas fa-plus"></i>
           </button>
         </div>
       </div>
     </div>
 
-    
-
     <!-- Modal -->
-    <div class="modal fade" id="modalregistroDespesa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalRegistraDespesa" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div id="modal_titulo_div">
-            <h5 class="modal-title" id="modal_titulo">Registro inserido com sucesso</h5>
+            <h5 class="modal-title" id="modal_titulo"></h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div class="modal-body" id="modal_conteudo">
-            Despesa foi cadastrada com sucesso!
-          </div>
+          <div class="modal-body" id="modal_conteudo"></div>
           <div class="modal-footer">
-            <button id="botao_modal" type="button" class="btn " data-dismiss="modal">Voltar</button>
+            <button type="button" data-dismiss="modal" id="modal_btn">Voltar</button>
           </div>
         </div>
       </div>
